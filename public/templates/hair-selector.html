@@ -1,0 +1,11 @@
+<div class='hairs'>
+  <ul>
+    <li ng-repeat="hair in hairs" class='hair-choice {{ hair.name }}' ng-class='{active : isHairSelected(hair)}' ng-click='$parent.selectHair($index)'>
+      <div><strong>{{ hair.title }}</strong></div>
+      <div class='image-wrapper'>
+        <div class='sizer'></div>
+        <img src='{{ hair.src }}'/>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,14 @@
+<div class='button-wrapper'>
+  <div class='paper-button'>
+    <a href='javascript:void(0)'>Upload An Image</a>
+    <input type='file' id='file-upload' onchange="angular.element(this).scope().handleUpload(this)"/>
+  </div>
+</div>
+<div class='button-wrapper'>
+  <div class='paper-button' id='share-button' disabled="{{ hasUpload(upload) ]]"><a href='javascript:void(0)'>Save and Share</a></div>
+  <div class='share-buttons'>
+    <!-- <paper-share-facebook class='share-button' raised>Facebook</paper-share-facebook>
+    <paper-share-google class='share-button'raised >Google</paper-share-google>
+    <paper-share-twitter class='share-button'raised>Twitter</paper-share-twitter> -->
+  </div>
+</div>

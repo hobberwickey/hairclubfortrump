@@ -1,0 +1,137 @@
+var API_Spec
+
+/*****************************/
+/*	         Meta            */
+/*****************************/ 
+[
+  	{ 
+	  	name: "Log In", 
+	  	href: "/login", 
+	  	rel: "meta" 
+	  	data: [
+	  		{ prompt: "Email", name: "email", value: "string" },
+	  		{ prompt: "Password", name: "password", value: "password" }
+	  	]
+  	},
+  	{ 
+	  	name: "Log Out", 
+	  	href: "/logout", 
+	  	rel: "meta",
+	  	data: []
+	},
+  	{ 
+
+	  	name: "Set Store",
+	  	href: "/set_store",
+	  	rel: "meta",
+	  	data: [
+	  		{ prompt: "Store Id", name: "store_id", value: "integer" }
+	  	]
+  	}
+]
+
+/*****************************/
+/*	     Beverages           */
+/*****************************/ 
+{
+	collection: {
+		version: 1.0,
+		href: "/beverages",
+
+		items: [
+			{
+				href: "/beverages/:uuid"
+				data: [
+					{ 
+						name: id, 
+						value: "integer" 
+					},
+					{ 
+						name: name, 
+						value: "string"
+					},
+					{
+						name: brand,
+						value: "string"
+					},
+					{
+						name: category,
+						value: "string"
+					},
+					{
+						name: category_data,
+						value: "json"
+					}
+				],
+
+				links: [
+					{ 
+						name: thumbnail, 
+						href: thumbnail_url, 
+						rel: thumbnail, 
+						render: image
+					}
+					{
+						name: image,
+						href: image_url,
+						rel: image,
+						render: image
+					}
+					{
+						name: store_products,
+						href: "/store_products/:store_uuid/beverage/:beverage_uuid", 
+						rel: link, 
+						render: link
+					}
+				]
+			}
+		],
+
+
+		//All routes are /public/beverages... subject to a session variable store_id
+		//All routes have an /admin/beverages counterpart that's unconstrained by store_id
+		queries: [
+			{
+				href: "/beverages",
+				rel: search,
+				prompt: "Paginated beverage list"
+				data: [
+					{ name: "page", prompt: "Page", value: "", defaults: 1, required: false },
+					{ name: "per_page", prompt: "Items Per Page", value: "", defaults: 10, required: false }
+				]
+			},
+
+			{
+				href: "/beverage/search"
+				rel: search,
+				prompt: "Search By Category, Brand or Beverage Name",
+				data: [
+					{ name: "category", prompt: "Category", value: "", required: false },
+					{ name: "brand", prompt: "Brand", value: "", required: false },
+					{ name: "name", prompt: "Name", value: "", required: false },
+				]
+			},
+
+			{
+				href: "/beverages/deep_search"
+				rel: search,
+				prompt: "Advanced Search",
+				data: [
+					{ name: "category", prompt: "Category", value: "", required: true },
+					{ name: "brand", prompt: "Brand", value: "", required: false },
+					{ name: "name", prompt: "Name", value: "", required: false },
+					{ name: "category_data", prompt, "Advanced", value: "", required: false }
+				]
+			}
+		],
+
+		template: {
+			data: [
+				{ prompt: "Category", name: "category", value: "" },
+				{ prompt: "Brand", name: "brand", value: "" },
+				{ prompt: "Name", name: "name", value: "" },
+				{ prompt: "Category Data", name: "category_data", value: "" },
+			]
+		}
+	}
+}

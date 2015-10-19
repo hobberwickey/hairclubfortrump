@@ -1,0 +1,24 @@
+{
+  "name": "angular-test",
+  "version": "0.0.0",
+  "authors": [
+    "Joel Weber <hobberwickey@gmail.com>"
+  ],
+  "description": "Just playing around with an agular app",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "Angular",
+    "Test"
+  ],
+  "license": "MIT",
+  "homepage": "github.com/hobberwickey",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
