@@ -2,7 +2,7 @@ var hair = angular.module("app").controller(
   "hairController", ["$scope", "hairConfig", function($scope, $hairConfig){
     $scope.config = $hairConfig.config;
     $scope.hairs = [
-      {name: "standard-don", title: "Standard Don", src: "/images/trump-hair-1.png" },
+      {name: "standard-trump", title: "Standard Trump", src: "/images/trump-hair-1.png" },
       {name: "golden-don", title: "Golden Don", src: "/images/trump-hair-2.png" }
     ]
 
@@ -51,6 +51,8 @@ var hair = angular.module("app").controller(
 
         hair.clearRect(0, 0, hair.canvas.width, hair.canvas.height);
         hair.drawImage(image, 0, 0, image.width, image.height, left, top, image.width * scale, image.height * scale);         
+      
+        if (!!$scope.config.upload) $scope.draw();
       }
     }
 
