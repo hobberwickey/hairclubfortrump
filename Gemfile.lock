@@ -32,7 +32,9 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
+    data_uri (0.1.0)
     dotenv (2.0.1)
+    git-version-bump (0.15.1)
     i18n (0.7.0)
     json (1.8.1)
     mail (2.6.3)
@@ -52,6 +54,9 @@ GEM
       paperclip (>= 3.0)
     pg (0.17.1)
     rack (1.5.2)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -89,9 +94,11 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   aws-ses
   bcrypt
+  data_uri
   dotenv
   paperclip-rack
   pg
+  rack-contrib
   rake
   rmagick
   sass

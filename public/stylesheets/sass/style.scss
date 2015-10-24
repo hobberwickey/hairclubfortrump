@@ -12,6 +12,33 @@ body {
   font-family: 'Philosopher', sans-serif;
 }
 
+image-tagger {
+  display: block;
+  .tagger-wrapper {
+    display: flex;
+
+    ul.tag-list {
+      margin: 0px;
+      padding: 0px;
+      list-style-type: none;
+      float: left;
+
+      li {
+        float: left;
+        margin-right: 3px;
+        padding: 2px 9px;
+        background-color: #FFDE3B;
+        border-radius: 3px;
+      }
+    }
+
+    input {
+      flex: 1;
+    }
+  }
+
+}
+
 
 .header {
   position: relative;

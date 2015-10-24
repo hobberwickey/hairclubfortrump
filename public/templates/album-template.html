@@ -3,7 +3,7 @@
   <ul>
     <li ng-repeat='image in selected.images' ng-class="{active : isImageSelected(image)}">
       <div class='image-thumbnails' ng-click='$parent.selectImage($index)'>
-        <div class='image-thumbnail' style='background-image: url("{{ image }}")'></div>
+        <div class='image-thumbnail' style='background-image: url("{{ image.thumb }}")'></div>
       </div>
     </li>
   </ul>

@@ -50,7 +50,19 @@ class Application < Sinatra::Base
   end
 
   post "/image" do
+    file = Paperclip.io_adapters.for(params[:image_data])
+    file.original_filename = SecureRandom.hex(24)
 
+    image = Image.new :title => params[:title], :file => file 
+    if image.save
+      image.set_tags params[:tag_ids]
+      
+      #This seems wonky, but it's to get the uuid
+      Image.where(:id => image.id).first.to_json
+    else
+      status 500
+      { success: false }.to_json
+    end
   end
 
   put "/image" do
@@ -58,11 +70,13 @@ class Application < Sinatra::Base
   end
 
   get "/albums" do
-
+    Tag.with_thumbs.to_json
   end
 
   get "/albums/:id" do
-
+    Tag.find( params[:id] ).images.map { |i| 
+      { title: i.title, thumb: i.file(:thumb), gallery: i.file(:gallery) } 
+    }.to_json
   end
 end
 

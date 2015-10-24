@@ -43,7 +43,12 @@ var app = angular.module(
     position: { x: 0, y: 0, w: 1024, h: 720, a: 0, x_offset: 0, y_offset: 0 },
     angleOffset: 0,
     originalLength: 0,
-    scale: 0
+    scale: 0,
+    contexts: {
+      upload: null,
+      hair: null,
+      result: null
+    }
   }
 
   return scope;

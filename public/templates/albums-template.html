@@ -4,8 +4,8 @@
     <li ng-repeat='album in albums' ng-class="{active : isAlbumSelected(album)}">
       <div class='album-thumbnails' ng-click='$parent.selectAlbum($index)'>
         <div class='title'>{{ album.title }}</div>
-        <div>{{ album.images.length }} Photos</div>
-        <div class='album-thumbnail' style='background-image: url("{{ album.images[0] }}")'></div>
+        <div>{{ album.count }} Photos</div>
+        <div class='album-thumbnail' style='background-image: url("{{ album.thumb }}")'></div>
       </div>
     </li>
   </ul>

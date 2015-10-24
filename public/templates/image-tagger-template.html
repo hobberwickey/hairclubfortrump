@@ -1,0 +1,10 @@
+<div class='tagger-wrapper'>
+  <label ng-show='{{ !!label }}'>{{ label }}</label>
+  <ul class='tag-list'>
+    <li ng-repeat='tag in tags'>
+      <div class='tag'>{{ tag }}</div>
+      <input type='hidden' name="{{ name }}[]" value='{{ tag }}'>
+    </li>
+  </ul>
+  <input type='text' class='tagger-autocomplete'>
+</div>

@@ -41,9 +41,9 @@ var hair = angular.module("app").controller(
         
       setContexts: function(stage){
         $scope.stage = stage;
-        $scope.uploadCtx = stage.querySelector("#image").getContext('2d');
-        $scope.hairCtx = stage.querySelector("#hair").getContext("2d");
-        $scope.resultCtx = stage.querySelector("#result").getContext("2d");
+        $scope.uploadCtx = $scope.config.contexts.upload = stage.querySelector("#image").getContext('2d');
+        $scope.hairCtx = $scope.config.contexts.hair = stage.querySelector("#hair").getContext("2d");
+        $scope.resultCtx = $scope.config.contexts.result = stage.querySelector("#result").getContext("2d");
 
         $scope.selectHair(0);
       },

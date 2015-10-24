@@ -17,6 +17,8 @@ gem 'sinatra-flash'                                 # flash messages
 gem 'aws-ses'                                       # email
 gem 'will_paginate', '~> 3.0.6'                     # paginate requests
 gem 'sass'                                          # because sass is awesome
+gem 'rack-contrib'
+gem 'data_uri'
 
 group :development do
   gem 'shotgun'                                     # reloading web server

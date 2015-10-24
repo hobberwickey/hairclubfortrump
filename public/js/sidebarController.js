@@ -1,4 +1,4 @@
-var sidebar = angular.module("app").controller("sidebarController", ["$scope", "galleryConfig", function($scope, galleryConfig){
+var sidebar = angular.module("app").controller("sidebarController", ["$scope", '$http', "galleryConfig", function($scope, $http, galleryConfig){
   /**
    * Scope Vars
    * @type {Array}
@@ -25,7 +25,10 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", "
 
     selectAlbum: function(index){
       $scope.selected = $scope.config.selected_album = $scope.albums[index];
-      $scope.selectImage(0);
+      $http.get("/albums/" + $scope.selected.id).then(function(resp){
+        $scope.selected.images = resp.data
+        $scope.selectImage(0);
+      });
     },
 
     selectImage: function(index){
@@ -37,21 +40,21 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", "
     },
 
     loadAlbums: function(){
-      //TODO: Remove Hardcoded albums
-      var albums = [
-        { 
-          title: "Originals",
-          images: ["/images/owl.jpg", "/images/bernie.jpg", "/images/fat-dog.jpg"]
-        },
-        {
-          title: "Trumped",
-          images: ["/images/owl-trumped.png", "/images/bernie-trumped.png", "/images/fat-dog-trumped.png"]
-        }
-      ]
+      return $http.get("/albums").then(function(resp){
+        for (var i=0; i<resp.data.length; i++){
+          var album = resp.data[i];
 
-      for (var i=0; i<albums.length; i++){
-        $scope.addAlbum(albums[i]);
-      }
+          $scope.addAlbum(
+            {
+              id: album.id,
+              title: album.name,
+              thumb: album.thumb,
+              count: album.count,
+              images: []
+            }
+          )
+        }
+      })
     }
   });
 
