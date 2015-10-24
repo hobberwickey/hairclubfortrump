@@ -5,11 +5,16 @@
   </div>
 </div>
 <div class='button-wrapper'>
-  <div class='paper-button' id='share-button' disabled="{{ hasUpload(upload) ]]"><a href='javascript:void(0)'>Save and Share</a></div>
+  <div class='paper-button' id='share-button' ng-disabled="!config.upload"><a href='javascript:void(0)'>Save and Share</a></div>
   <div class='share-buttons'>
     <form id='save_form'>
-      <label>Title <input type='text' name='title' id='image_title'></label> 
-      <image-tagger id='image_tags' id-field='name' label='Tags (hint: use nouns)'></image-tagger>
+      <label>Title</label>
+      <div class='input-wrapper'>
+        <input type='text' name='title' id='image_title'> 
+      </div>
+      <div class='input-wrapper'>
+        <image-tagger id='image_tags' id-field='name' label='Tags (hint: use nouns, separate with spaces)'></image-tagger>
+      </div>
       <input type='hidden' name="image_data" id='image_data'>
       <div class='paper-button' id='save_image'>Submit</div>
     </form>

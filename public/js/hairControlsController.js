@@ -12,6 +12,8 @@ var hairControls = angular.module("app").controller(
           $scope.config.angleOffset = 0;
           $scope.config.originalLength = 0;
           $hairConfig.$emit("upload-changed")
+
+          $scope.$apply();
         }
 
         reader.readAsDataURL(uploader.files[0]);
@@ -29,7 +31,14 @@ var hairControls = angular.module("app").controller(
           image = $element[0].querySelector("#image_data"),
           tagger = $element[0].querySelector("#image_tags"),
           title = $element[0].querySelector("#image_title"),
-          save = $element[0].querySelector("#save_image");
+          save = $element[0].querySelector("#save_image"),
+          share = $element[0].querySelector("#share-button");
+
+      share.addEventListener('click', function(){
+        if ($scope.config.upload !== null){
+          share.parentNode.classList.toggle("opened");
+        }
+      }, false);
 
       save.addEventListener("click", function(){
         title.value = title.value.replace(/^\s+|\s+$/g, '');
@@ -44,7 +53,8 @@ var hairControls = angular.module("app").controller(
             transformRequest: angular.identity,
             headers: {'Content-Type': void(0)}
         }).then(function(resp){
-          console.log("SUCCESS")
+          share.parentNode.classList.remove("opened");
+          
         })
 
       })
