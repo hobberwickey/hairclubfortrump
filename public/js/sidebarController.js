@@ -1,4 +1,4 @@
-var sidebar = angular.module("app").controller("sidebarController", ["$scope", '$http', "galleryConfig", function($scope, $http, galleryConfig){
+var sidebar = angular.module("app").controller("sidebarController", ["$scope", '$http', "$route", "galleryConfig", function($scope, $http, $route, galleryConfig){
   /**
    * Scope Vars
    * @type {Array}
@@ -25,7 +25,9 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
 
     selectAlbum: function(index){
       $scope.selected = $scope.config.selected_album = $scope.albums[index];
-      $http.get("/albums/" + $scope.selected.id).then(function(resp){
+      
+      return $http.get("/albums/" + $scope.selected.id).then(function(resp){
+        console.log(resp.data);
         $scope.selected.images = resp.data
         $scope.selectImage(0);
       });
@@ -57,8 +59,29 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
       })
     }
   });
+  
+  //Load initial
+  $scope.loadAlbums().then(function(){
+    if (!!$route.current.params.tag_name){
+      var match = $scope.albums.filter(function(a){
+        return a.title.toLowerCase() === $route.current.params.tag_name.toLowerCase();
+      })
 
-  $scope.loadAlbums();
+      if (!!match[0]){
+        $scope.selectAlbum($scope.albums.indexOf( match[0]  )).then(function(){
+          if (!!$route.current.params.image_uuid){
+            var match = $scope.selected.images.filter(function(i){
+              return i.uuid === $route.current.params.image_uuid;
+            })
+
+            if (!!match[0]){
+              $scope.selectImage($scope.selected.images.indexOf( match[0] ));
+            }
+          }
+        })
+      }
+    }
+  })
 }]).directive("albumsSidebar", function(){
   return {
     transpose: true,

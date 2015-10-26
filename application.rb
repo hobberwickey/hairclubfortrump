@@ -75,7 +75,7 @@ class Application < Sinatra::Base
 
   get "/albums/:id" do
     Tag.find( params[:id] ).images.map { |i| 
-      { title: i.title, thumb: i.file(:thumb), gallery: i.file(:gallery) } 
+      { uuid: i.uuid, title: i.title, thumb: i.file(:thumb), gallery: i.file(:gallery) } 
     }.to_json
   end
 end

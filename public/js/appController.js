@@ -3,7 +3,10 @@ var app = angular.module(
 ).config(
   ["$routeProvider", function($routeProvider){
     $routeProvider.when(
-        "/gallery/:image_id", {
+        "/gallery/:tag_name/:image_uuid", {
+          templateUrl: "/pages/gallery.html"
+        }
+      ).when("/gallery/:tag_name", {
           templateUrl: "/pages/gallery.html"
         }
       ).when(
