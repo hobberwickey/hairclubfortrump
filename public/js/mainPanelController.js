@@ -22,7 +22,6 @@ var mainPanel = angular.module("app").controller(
         var selected = $scope.config.selected_image;
 
         $rootScope.metaService.set( selected.gallery );
-        console.log($scope)
         $location.path("/gallery/" + $scope.config.selected_album.title + "/" + $scope.config.selected_image.uuid, false);
       }
     })
