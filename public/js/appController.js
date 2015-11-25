@@ -1,7 +1,12 @@
 var app = angular.module(
   "app", ["ngRoute"]
 ).config(
-  ["$routeProvider", function($routeProvider){
+  ["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
+    
     $routeProvider.when(
         "/gallery/:tag_name/:image_uuid", {
           templateUrl: "/pages/gallery.html"
