@@ -8,11 +8,12 @@ var mainPanel = angular.module("app").controller(
         var types = {
           fb: function(href){ return 'https://www.facebook.com/sharer/sharer.php?u=' + href },
           twitter: function(href){ return 'https://twitter.com/intent/tweet?url=' + href },
-          pinterest: function(href) { return 'http://pinterest.com/pin/create/button/?url=' + href }
+          pinterest: function(href, image_url, image_title) { return 'http://pinterest.com/pin/create/button/?url=' + href + "&media=" + image_url + "&description=" + image_title }
         }
 
-        var url = types[type]($location.absUrl());
-        console.log(url)
+        var image = $scope.config.selected_image,
+            url = types[type]($location.absUrl(), image.gallery, image.title);
+
         window.open(url, 'facebook-share', 'width=580,height=296');
       }
     });
