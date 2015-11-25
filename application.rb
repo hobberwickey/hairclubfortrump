@@ -45,12 +45,20 @@ class Application < Sinatra::Base
   end
 
   get "/" do
-    send_file "views/index.html"
+    erb :index
+  end
+
+  get "/gallery/:album_name/:uuid" do
+    @image = Image.where(:uuid => params[:uuid]).first
+    @image_url = @image.blank? ? nil : @image.file(:gallery)
+    erb :index
   end
 
   get %r{/gallery/.*} do
-    send_file "views/index.html"
+    erb :index
   end
+
+
 
   post "/image" do
     file = Paperclip.io_adapters.for(params[:image_data])
