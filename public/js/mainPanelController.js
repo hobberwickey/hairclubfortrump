@@ -1,6 +1,7 @@
 var mainPanel = angular.module("app").controller(
-  "mainPanelController", ["$scope", '$location', "galleryConfig", function($scope, $location, galleryConfig){
+  "mainPanelController", ["$scope", '$rootScope', '$location', "galleryConfig", "metaService", function($scope, $rootScope, $location, galleryConfig, metaService){
     $scope.config = galleryConfig.config;
+    $rootScope.metaService = metaService;
 
     angular.extend($scope, {
       share: function(type){
@@ -11,10 +12,19 @@ var mainPanel = angular.module("app").controller(
         }
 
         var url = types[type]($location.absUrl());
-        console.log(url)
         window.open(url, 'facebook-share', 'width=580,height=296');
       }
     });
+
+    $scope.$watch( function(){ return $scope.config.selected_image }, function(){
+      if (!!$scope.config.selected_image){
+        var selected = $scope.config.selected_image;
+
+        $rootScope.metaService.set( selected.gallery );
+        console.log($scope)
+        $location.path("/gallery/" + $scope.config.selected_album.title + "/" + $scope.config.selected_image.uuid, false);
+      }
+    })
   }]
 ).directive("mainPanel", function(){
   return {

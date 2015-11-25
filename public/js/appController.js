@@ -6,7 +6,7 @@ var app = angular.module(
       enabled: true,
       requireBase: false
     });
-    
+
     $routeProvider.when(
         "/gallery/:tag_name/:image_uuid", {
           templateUrl: "/pages/gallery.html"
@@ -28,6 +28,18 @@ var app = angular.module(
         }
       )
   }]
+).service("metaService", function(){
+    var imageUrl = "";
+
+    return {
+      set: function(url){
+        imageUrl = url;
+      }, 
+      get: function(){
+        return imageUrl;
+      }
+    }
+  }
 ).factory("galleryConfig", function($rootScope){
     var scope = $rootScope.$new();
 
@@ -60,4 +72,16 @@ var app = angular.module(
   }
 
   return scope;
-})
+}).run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+    var original = $location.path;
+    $location.path = function (path, reload) {
+        if (reload === false) {
+            var lastRoute = $route.current;
+            var un = $rootScope.$on('$locationChangeSuccess', function () {
+                $route.current = lastRoute;
+                un();
+            });
+        }
+        return original.apply($location, [path]);
+    };
+}])

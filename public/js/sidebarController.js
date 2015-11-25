@@ -29,7 +29,6 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
       return $http.get("/albums/" + $scope.selected.id).then(function(resp){
         $scope.selected.images = resp.data
         $scope.selectImage(0);
-        $location.path("/gallery/" + $scope.selected.title + "/" + $scope.selected.images[0].uuid).replace();
       });
     },
 

@@ -48,6 +48,10 @@ class Application < Sinatra::Base
     send_file "views/index.html"
   end
 
+  get %r{/gallery/.*} do
+    send_file "views/index.html"
+  end
+
   post "/image" do
     file = Paperclip.io_adapters.for(params[:image_data])
     file.original_filename = SecureRandom.hex(24)
