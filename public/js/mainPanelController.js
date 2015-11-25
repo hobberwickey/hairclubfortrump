@@ -11,6 +11,7 @@ var mainPanel = angular.module("app").controller(
         }
 
         var url = types[type]($location.absUrl());
+        console.log(url)
         window.open(url, 'facebook-share', 'width=580,height=296');
       }
     });
