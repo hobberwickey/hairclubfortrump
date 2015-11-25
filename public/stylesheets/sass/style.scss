@@ -250,56 +250,56 @@ hair-controls {
     }
   }
 
-  .share-buttons {
-    padding: 20px 10px 0px 10px;
-    border: solid 1px #FFDE3B;
-    margin-top: -10px;
-    border-radius: 10px;
-    overflow: auto;
-    display: none;
-    background-color: white;
+  // .share-buttons {
+  //   padding: 20px 10px 0px 10px;
+  //   border: solid 1px #FFDE3B;
+  //   margin-top: -10px;
+  //   border-radius: 10px;
+  //   overflow: auto;
+  //   display: none;
+  //   background-color: white;
 
-    label {
-      display: block;
-      margin: 5px 0px;
-    }
+  //   label {
+  //     display: block;
+  //     margin: 5px 0px;
+  //   }
 
-    .input-wrapper {
-      width: 100%;
-      padding-left: 10px;
-      box-sizing: border-box;
+  //   .input-wrapper {
+  //     width: 100%;
+  //     padding-left: 10px;
+  //     box-sizing: border-box;
 
-      input {
-        padding: 10px;
-        font-size: 100%;
-        border-radius: 10px;
+  //     input {
+  //       padding: 10px;
+  //       font-size: 100%;
+  //       border-radius: 10px;
 
-        &#image_title {
-          width: 100%;
-        }
-      }
-    }
+  //       &#image_title {
+  //         width: 100%;
+  //       }
+  //     }
+  //   }
 
     
 
-    image-tagger {
-      label {
-        margin-left: -10px;
-      }
+  //   image-tagger {
+  //     label {
+  //       margin-left: -10px;
+  //     }
 
-      ul {
-        padding-right: 10px;
-      }
-    }
+  //     ul {
+  //       padding-right: 10px;
+  //     }
+  //   }
 
-    #save_image {
-      margin-top: 10px;
-      width: 100px;
-      text-align: center;
-      float: right;
-      margin-bottom: 10px;
-    }
-  }
+  //   #save_image {
+  //     margin-top: 10px;
+  //     width: 100px;
+  //     text-align: center;
+  //     float: right;
+  //     margin-bottom: 10px;
+  //   }
+  // }
 }
 
 .main-stage {
@@ -406,6 +406,35 @@ hair-controls {
 
     &:hover .hair-wrapper {
       display: block;
+    }
+  }
+}
+
+.share-buttons {
+  width: 100%;
+  height: 60px;
+  margin-top: 15px;
+  display: flex;
+
+  .share-button {
+    flex: 1;
+    border-radius: 10px;
+
+    &.fb-share {
+      background-color: blue;
+    }
+
+    &.twitter-share {
+      background-color: lightblue;
+    }
+
+    &.pinterest-share {
+      background-color: red;
+    }
+
+    .btn {
+      width: 100%;
+      height: 100%;
     }
   }
 }

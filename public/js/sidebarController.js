@@ -1,4 +1,4 @@
-var sidebar = angular.module("app").controller("sidebarController", ["$scope", '$http', "$route", "galleryConfig", function($scope, $http, $route, galleryConfig){
+var sidebar = angular.module("app").controller("sidebarController", ["$scope", '$http', "$route", "$location", "galleryConfig", function($scope, $http, $route, $location, galleryConfig){
   /**
    * Scope Vars
    * @type {Array}
@@ -27,9 +27,9 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
       $scope.selected = $scope.config.selected_album = $scope.albums[index];
       
       return $http.get("/albums/" + $scope.selected.id).then(function(resp){
-        console.log(resp.data);
         $scope.selected.images = resp.data
         $scope.selectImage(0);
+        $location.path("/gallery/" + $scope.selected.title + "/" + $scope.selected.images[0].uuid).replace();
       });
     },
 

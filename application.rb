@@ -21,7 +21,6 @@ Dotenv.load
 # Bundler.require :default, (ENV["RACK_ENV"] || "development").to_sym
 
 Bundler.require :default, (ENV["RACK_ENV"] || "development").to_sym
-
 ActiveRecord::Base.raise_in_transactional_callbacks = true # To silence all those stupid warnings
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
