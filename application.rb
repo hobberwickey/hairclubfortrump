@@ -62,13 +62,7 @@ class Application < Sinatra::Base
 
     image = Image.where(:uuid => params[:uuid]).first
     if image
-      open(image.file(:gallery)) {|img|
-        tmpfile = Tempfile.new("download.jpg")
-        File.open(tmpfile.path, 'wb') do |f| 
-          f.write img.read
-        end 
-        send_file tmpfile.path
-      }   
+      send_file open(image.file(:gallery)), type: 'image/jpeg', disposition: 'inline'   
     else
       send_file "/images/trump-hair-1.png"
     end
