@@ -413,23 +413,30 @@ hair-controls {
 .share-buttons {
   width: 100%;
   height: 60px;
-  margin-top: 15px;
+  margin-top: 30px;
   display: flex;
 
   .share-button {
     flex: 1;
     border-radius: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0px 5px;
 
     &.fb-share {
-      background-color: blue;
+      background-color: #3b5998;
+      background-image: url(../images/fb.png);
     }
 
     &.twitter-share {
-      background-color: lightblue;
+      background-color: #00aced;
+      background-image: url(../images/twitter.png);
     }
 
     &.pinterest-share {
-      background-color: red;
+      background-color: #cb2027;
+      background-image: url(../images/pinterest.png);
     }
 
     .btn {
