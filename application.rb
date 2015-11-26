@@ -49,8 +49,7 @@ class Application < Sinatra::Base
   end
 
   get "/gallery/:album_name/:uuid" do
-    @image = Image.where(:uuid => params[:uuid]).first
-    @image_url = @image.blank? ? nil : @image.file(:gallery)
+    @image_uuid = params[:uuid]
     erb :index
   end
 
@@ -58,7 +57,19 @@ class Application < Sinatra::Base
     erb :index
   end
 
+  get "/image/:uuid" do
+    require "open-uri"
 
+    image = Image.where(:uuid => params[:uuid]).first
+    if image
+      uri = URI( image.file(:gallery) )
+      file = Net::HTTP.get(uri)
+    else
+      file = File.open("/images/trump-hair-1.png")
+    end
+
+    send_file(file)
+  end
 
   post "/image" do
     file = Paperclip.io_adapters.for(params[:image_data])

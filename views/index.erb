@@ -10,13 +10,13 @@
     <meta name="twitter:description" content="Trump did it and so can... anything really.">
     <!-- <meta name="twitter:creator" content="@author_handle"> -->
     <!-- Twitter Summary card images must be at least 120x120px -->
-    <meta name="twitter:image" content="<%= @image_url || '' %>">
+    <meta name="twitter:image" content="http://www.hairclubfortrump.com/image/<%= @image_uuid || 'missing_image' %>">
 
     <!-- Open Graph data -->
     <meta property="og:title" content="Hair Club For Trump" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://www.hairclubfortrump.com/" />
-    <meta property="og:image" content="http://www.hairclubfortrump.com/images/owl.jpg" />
+    <meta property="og:image" content="http://www.hairclubfortrump.com/image/<%= @image_uuid || 'missing_image' %>" />
     <meta property="og:description" content="Trumpify Anything" /> 
     <meta property="og:site_name" content="Hair Club For Trump" />
 
