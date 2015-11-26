@@ -45,6 +45,7 @@ class Application < Sinatra::Base
   end
 
   get "/" do
+    puts "INDEX? THAT'S NOT RIGHT"
     erb :index
   end
 
