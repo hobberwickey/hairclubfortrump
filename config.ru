@@ -2,6 +2,8 @@ require './application'
 require 'sass/plugin/rack'
 require 'rack/contrib'
 
+$stdout.sync = true
+
 use Rack::PostBodyContentTypeParser
 
 
