@@ -45,22 +45,19 @@ class Application < Sinatra::Base
   end
 
   get "/" do
-    puts "INDEX? THAT'S NOT RIGHT"
     erb :index
   end
 
   get "/gallery/:album_name/:uuid" do
-    puts "PARAMS: #{params}"
     @image_uuid = params[:uuid]
-    puts "IMAGE UUID: #{@image_uuid}"
+    @gallery_name = params[:album_name]
     erb :index
   end
 
   get %r{/gallery/.*} do
-    puts "GETTING HERE FIRST"
     erb :index
   end
-  
+
   get "/image/:uuid" do
     require "open-uri"
 
