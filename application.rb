@@ -50,6 +50,7 @@ class Application < Sinatra::Base
 
   get "/gallery/:album_name/:uuid" do
     @image_uuid = params[:uuid]
+    puts "IMAGE UUID: #{@image_uuid}"
     erb :index
   end
 
