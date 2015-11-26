@@ -62,13 +62,16 @@ class Application < Sinatra::Base
 
     image = Image.where(:uuid => params[:uuid]).first
     if image
-      uri = URI( image.file(:gallery) )
-      file = Net::HTTP.get(uri)
+      open(image.file(:gallery)) {|img|
+        tmpfile = Tempfile.new("download.jpg")
+        File.open(tmpfile.path, 'wb') do |f| 
+          f.write img.read
+        end 
+        send_file tmpfile.path, :filename => "great-image.jpg"
+      }   
     else
-      file = File.open("/images/trump-hair-1.png")
+      send_file("/images/trump-hair-1.png")
     end
-
-    send_file(file)
   end
 
   post "/image" do
