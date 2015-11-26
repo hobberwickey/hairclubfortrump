@@ -67,10 +67,10 @@ class Application < Sinatra::Base
         File.open(tmpfile.path, 'wb') do |f| 
           f.write img.read
         end 
-        send_file tmpfile.path, :filename => "great-image.jpg"
+        send_file tmpfile.path
       }   
     else
-      send_file("/images/trump-hair-1.png")
+      send_file "/images/trump-hair-1.png"
     end
   end
 
