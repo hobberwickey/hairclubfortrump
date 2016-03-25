@@ -34,6 +34,8 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
 
     selectImage: function(index){
       $scope.selected_image = $scope.config.selected_image = $scope.selected.images[index];
+      
+      ga('send', 'imageview');
     },
 
     addAlbum: function(album){

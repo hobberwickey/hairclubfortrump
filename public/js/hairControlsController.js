@@ -14,6 +14,7 @@ var hairControls = angular.module("app").controller(
           $hairConfig.$emit("upload-changed")
 
           $scope.$apply();
+          ga('send', 'imageupload');
         }
 
         reader.readAsDataURL(uploader.files[0]);
@@ -24,7 +25,6 @@ var hairControls = angular.module("app").controller(
     }
 
     $scope.redirect = function(url){
-      console.log(url)
       $location.path(url)
     }
   }]
@@ -64,6 +64,7 @@ var hairControls = angular.module("app").controller(
             headers: {'Content-Type': void(0)}
         }).then(function(resp){
           // $scope.saving = false;
+          ga('send', 'imagecreate');
           $scope.redirect( "/gallery/All/" + resp.data.uuid );          
         })
 
