@@ -42,7 +42,7 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
 
     loadAlbums: function(){
       return $http.get("/albums").then(function(resp){
-        for (var i=0; i<resp.data.length; i++){
+        for (var i=0; i<1; i++){
           var album = resp.data[i];
 
           $scope.addAlbum(
@@ -55,6 +55,8 @@ var sidebar = angular.module("app").controller("sidebarController", ["$scope", '
             }
           )
         }
+
+        $scope.selectAlbum(0);
       })
     }
   });

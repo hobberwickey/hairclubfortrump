@@ -58,6 +58,10 @@ class Application < Sinatra::Base
     erb :index
   end
 
+  get %r{/gallery|create.*} do
+    erb :index
+  end
+
   get "/image/:uuid" do
     require "open-uri"
 
@@ -70,6 +74,7 @@ class Application < Sinatra::Base
   end
 
   post "/image" do
+    puts "PARAMS #{params}"
     file = Paperclip.io_adapters.for(params[:image_data])
     file.original_filename = SecureRandom.hex(24)
 
@@ -94,9 +99,12 @@ class Application < Sinatra::Base
   end
 
   get "/albums/:id" do
-    Tag.find( params[:id] ).images.map { |i| 
+    Image.all.order("file_updated_at DESC").map { |i| 
       { uuid: i.uuid, title: i.title, thumb: i.file(:thumb), gallery: i.file(:gallery) } 
     }.to_json
+    # Tag.find( params[:id] ).images.map { |i| 
+    #   { uuid: i.uuid, title: i.title, thumb: i.file(:thumb), gallery: i.file(:gallery) } 
+    # }.to_json
   end
 end
 

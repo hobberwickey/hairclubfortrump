@@ -12,9 +12,10 @@
       <div class='input-wrapper'>
         <input type='text' name='title' id='image_title'> 
       </div>
-      <div class='input-wrapper'>
+      <!-- <div class='input-wrapper'>
         <image-tagger id='image_tags' id-field='name' label='Tags (hint: use nouns, separate with spaces)'></image-tagger>
-      </div>
+      </div> -->
+      <input type='hidden' name="tag_ids[]" id='tag_data' value='All'>
       <input type='hidden' name="image_data" id='image_data'>
       <div class='paper-button' id='save_image'>Submit</div>
     </form>

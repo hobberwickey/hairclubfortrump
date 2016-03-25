@@ -4,7 +4,7 @@ class Tag < ActiveRecord::Base
 
   def self.with_thumbs
     result = []
-    self.all.order("name DESC").each do |t|
+    self.where({:name => "All"}).each do |t|
       result << { 
         :id => t.id, 
         :name => t.name, 
