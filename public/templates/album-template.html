@@ -1,5 +1,4 @@
 <div>
-  <h4>{{ selected.title }} Images</h4>
   <ul>
     <li ng-repeat='image in selected.images' ng-class="{active : isImageSelected(image)}">
       <div class='image-thumbnails' ng-click='$parent.selectImage($index)'>
