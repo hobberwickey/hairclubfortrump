@@ -1,5 +1,5 @@
 var hairControls = angular.module("app").controller(
-  "hairControlsController", ["$scope", "hairConfig", "$http", function($scope, $hairConfig, $http){
+  "hairControlsController", ["$scope", "hairConfig", "$http", "$location", function($scope, $hairConfig, $http, $location){
     $scope.config = $hairConfig.config;
     $scope.http = $http;
 
@@ -22,6 +22,11 @@ var hairControls = angular.module("app").controller(
         $hairConfig.$emit("upload-changed")
       }
     }
+
+    $scope.redirect = function(url){
+      console.log(url)
+      $location.path(url)
+    }
   }]
 ).directive("hairControls", function(){
   return {
@@ -39,11 +44,13 @@ var hairControls = angular.module("app").controller(
       //     share.parentNode.classList.toggle("opened");
       //   }
       // }, false);
-
+      $scope.saving = false;
       // save.addEventListener("click", function(){
       
-      console.log("hey")
       share.addEventListener("click", function(){
+        if (!$scope.config.upload || $scope.saving) return;
+        $scope.saving = true;
+
         title.value = "Untitled" //title.value.replace(/^\s+|\s+$/g, '');
         image.value = $scope.config.contexts.result.canvas.toDataURL("image/jpeg");
         
@@ -56,9 +63,8 @@ var hairControls = angular.module("app").controller(
             transformRequest: angular.identity,
             headers: {'Content-Type': void(0)}
         }).then(function(resp){
-          window.location = "/gallery/All/" + resp.data.uuid; //2dc51f64-ad40-46a0-8c33-5fc8f295478c"
-          // share.parentNode.classList.remove("opened");
-          
+          // $scope.saving = false;
+          $scope.redirect( "/gallery/All/" + resp.data.uuid );          
         })
 
       })
